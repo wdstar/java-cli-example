@@ -18,4 +18,6 @@ Java CLI example
 1. Run.
     ```bash
     $ java -jar ./build/libs/java-cli-example-*.jar
+    # with logback conf.
+    $ java -Dlogback.configurationFile=./logback.groovy -jar ./build/libs/java-cli-example-*.jar
     ```
