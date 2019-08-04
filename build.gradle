@@ -37,3 +37,14 @@ application {
     // Define the main class for the application
     mainClassName = 'com.github.wdstar.java.cli.Example'
 }
+
+jar {
+    manifest {
+        attributes 'Manifest-Version': '0.1.0'
+        attributes 'Main-Class': 'com.github.wdstar.java.cli.Example'
+    }
+    
+    version '0.1.0'
+    // fat jar
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}

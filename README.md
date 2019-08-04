@@ -11,3 +11,11 @@ Java CLI example
     ```bash
     $ gradlew test
     ```
+1. Build JAR.
+    ```bash
+    $ gradlew jar
+    ```
+1. Run.
+    ```bash
+    $ java -jar ./build/libs/java-cli-example-*.jar
+    ```
