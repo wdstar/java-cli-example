@@ -3,12 +3,23 @@
  */
 package com.github.wdstar.java.cli;
 
+import java.lang.invoke.MethodHandles;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Example {
+    private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
     public String getGreeting() {
         return "Hello world.";
     }
 
     public static void main(String[] args) {
         System.out.println(new Example().getGreeting());
+        logger.debug("debug message.");
+        logger.info("info message");
+        logger.warn("warn message");
+        logger.error("error message");
     }
 }
