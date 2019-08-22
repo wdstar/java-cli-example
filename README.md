@@ -1,4 +1,6 @@
 # java-cli-example
+[![Known Vulnerabilities](https://snyk.io//test/github/wdstar/java-cli-example/badge.svg?targetFile=build.gradle)](https://snyk.io//test/github/wdstar/java-cli-example?targetFile=build.gradle)
+
 Java CLI example
 
 ## Development
