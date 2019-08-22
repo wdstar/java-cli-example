@@ -1,5 +1,6 @@
 # java-cli-example
 [![Known Vulnerabilities](https://snyk.io//test/github/wdstar/java-cli-example/badge.svg?targetFile=build.gradle)](https://snyk.io//test/github/wdstar/java-cli-example?targetFile=build.gradle)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wdstar_java-cli-example&metric=alert_status)](https://sonarcloud.io/dashboard?id=wdstar_java-cli-example)
 
 Java CLI example
 
