@@ -12,11 +12,12 @@ public class Example {
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public String getGreeting() {
-        return "Hello world.";
+        return "Hello world. Java: " + System.getProperty("java.version");
     }
 
     public static void main(String[] args) {
-        System.out.println(new Example().getGreeting());
+        logger.info("Greeting: " + new Example().getGreeting());
+
         logger.debug("debug message.");
         logger.info("info message");
         logger.warn("warn message");
