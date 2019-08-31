@@ -6,6 +6,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install tools
+          command: |
+            chmod 755 ./gradlew
+      - run:
           name: Run unit tests
           command: |
             ./gradlew test
