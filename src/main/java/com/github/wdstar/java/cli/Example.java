@@ -12,7 +12,7 @@ public class Example {
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public String getGreeting() {
-        return "Hello world. Java: " + System.getProperty("java.version");
+        return String.format("Hello world. Java: %s", System.getProperty("java.version"));
     }
 
     public static void main(String[] args) {

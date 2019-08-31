@@ -62,3 +62,11 @@ jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     from configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
 }
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "wdstar_java-cli-example"
+        property "sonar.organization", "wdstar"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}

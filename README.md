@@ -24,3 +24,10 @@ Java CLI example
     # with logback conf.
     $ java -Dlogback.configurationFile=./logback.groovy -jar ./build/libs/java-cli-example-*.jar
     ```
+1. Analyze by SonarScanner
+    ```bash
+    # set access token
+    $ cat ~/.gradle/gradle.properties 
+    systemProp.sonar.login=<token>
+    $ gradlew sonarqube
+    ```
