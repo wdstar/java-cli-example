@@ -8,11 +8,11 @@ jobs:
       - run:
           name: Run unit tests
           command: |
-            gradlew test
+            ./gradlew test
       - run:
           name: Sonar Scanner
           command: |
-            gradlew sonarqube -PsystemProp.sonar.login=${SONAR_LOGIN}
+            ./gradlew sonarqube -PsystemProp.sonar.login=${SONAR_LOGIN}
 
 workflows:
   version: 2
