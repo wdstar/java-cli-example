@@ -3,12 +3,26 @@
  */
 package com.github.wdstar.java.cli;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.Assertions.*;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({Example.class})
 public class ExampleTest {
     @Test public void testExampleHasAGreeting() {
         Example classUnderTest = new Example();
-        assertNotNull("Example should have a greeting", classUnderTest.getGreeting());
+        String greeting = classUnderTest.getGreeting();
+
+        // by JUnit (traditional)
+        assertNotNull(greeting);
+        assertThat(greeting, notNullValue());
+        // by AssertJ
+        assertThat(greeting).isNotNull();
     }
 }
