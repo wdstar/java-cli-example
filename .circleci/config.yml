@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Sonar Scanner
           command: |
-            ./gradlew sonarqube -PsystemProp.sonar.login=${SONAR_LOGIN}
+            ./gradlew sonarqube -Dsonar.login=${SONAR_LOGIN}
 
 workflows:
   version: 2
