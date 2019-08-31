@@ -12,7 +12,7 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application
     id 'application'
-    id "org.sonarqube" version "2.7.1"
+    id 'org.sonarqube' version '2.7.1'
     id 'jacoco'
 }
 
@@ -64,10 +64,17 @@ jar {
     from configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
 sonarqube {
     properties {
-        property "sonar.projectKey", "wdstar_java-cli-example"
-        property "sonar.organization", "wdstar"
-        property "sonar.host.url", "https://sonarcloud.io"
+        property 'sonar.projectKey', 'wdstar_java-cli-example'
+        property 'sonar.organization', 'wdstar'
+        property 'sonar.host.url', 'https://sonarcloud.io'
     }
 }
