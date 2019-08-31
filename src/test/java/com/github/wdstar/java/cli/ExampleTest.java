@@ -15,14 +15,20 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Example.class})
 public class ExampleTest {
-    @Test public void testExampleHasAGreeting() {
-        Example classUnderTest = new Example();
-        String greeting = classUnderTest.getGreeting();
+    @Test
+    public void testExampleHasAGreeting() {
+        Example example = new Example();
+        String greeting = example.getGreeting();
 
         // by JUnit (traditional)
         assertNotNull(greeting);
         assertThat(greeting, notNullValue());
         // by AssertJ
         assertThat(greeting).isNotNull();
+    }
+
+    @Test
+    public void testMain() {
+        Example.main(new String[]{});
     }
 }

@@ -3,6 +3,7 @@
  */
 package com.github.wdstar.java.cli;
 
+import static java.lang.String.format;
 import java.lang.invoke.MethodHandles;
 
 import org.slf4j.Logger;
@@ -12,11 +13,11 @@ public class Example {
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public String getGreeting() {
-        return String.format("Hello world. Java: %s", System.getProperty("java.version"));
+        return format("Hello world. Java: %s", System.getProperty("java.version"));
     }
 
     public static void main(String[] args) {
-        logger.info("Greeting: " + new Example().getGreeting());
+        logger.info("Greeting: {}", new Example().getGreeting());
 
         logger.debug("debug message.");
         logger.info("info message");
