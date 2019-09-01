@@ -78,3 +78,5 @@ sonarqube {
         property 'sonar.host.url', 'https://sonarcloud.io'
     }
 }
+
+apply from: 'gradle/jacoco-offline-instrument.gradle'

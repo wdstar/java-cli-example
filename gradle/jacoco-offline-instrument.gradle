@@ -1,0 +1,64 @@
+apply plugin: 'jacoco'
+
+jacoco {
+  toolVersion = '0.8.4'
+}
+
+configurations {
+  jacocoAnt
+  jacocoAgent
+}
+
+task instrument(dependsOn: ['classes']) {
+  ext.outputDir = "$buildDir.path/classes-instrumented"
+  doLast {
+    ant.taskdef(
+      name: 'instrument',
+      classname: 'org.jacoco.ant.InstrumentTask',
+      classpath: configurations.jacocoAnt.asPath)
+    ant.instrument(destdir: outputDir) {
+      //fileset(dir: sourceSets.main.output.classesDir)
+      fileset(dir: "$buildDir.path/classes")
+    }
+  }
+}
+
+gradle.taskGraph.whenReady { graph ->
+  if (graph.hasTask(instrument)) {
+    tasks.withType(Test) {
+      doFirst {
+        test {
+          jacoco {
+            destinationFile = file("$buildDir.path/jacoco/offline-instrument.exec")
+          }
+        }
+        //systemProperty 'jacoco-agent.destfile', buildDir.path + '/jacoco/offline-instrument.exec'
+        classpath = files(instrument.outputDir) + classpath + configurations.jacocoAgent
+      }
+    }
+  }
+}
+
+task report(dependsOn: ['instrument', 'test']) {
+  doLast {
+    ant.taskdef(
+      name: 'report',
+      classname: 'org.jacoco.ant.ReportTask',
+      classpath: configurations.jacocoAnt.asPath)
+    ant.report() {
+      executiondata {
+        ant.file(file: "$buildDir.path/jacoco/offline-instrument.exec")
+      }
+      structure(name: 'Example') {
+        classfiles {
+          //fileset(dir: sourceSets.main.output.classesDir)
+          fileset(dir: "$buildDir.path/classes")
+        }
+        sourcefiles {
+          fileset(dir: 'src/main/java')
+        }
+      }
+      html(destdir: "$buildDir.path/reports/jacoco/test/html")
+    }
+  }
+}
