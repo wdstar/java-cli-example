@@ -14,7 +14,6 @@ public class Example {
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public String getGreeting() {
-        //return format("Hello world. Java: %s", System.getProperty("java.version"));
         return format("Hello world. Java: %s", SystemUtils.JAVA_VERSION);
     }
 

@@ -44,6 +44,7 @@ gradle.taskGraph.whenReady { graph ->
 }
 
 task report(dependsOn: ['instrument', 'test']) {
+    ext.jacocoDestFile = jacocoDestFile
     doLast {
         ant.taskdef(
             name: 'report',
