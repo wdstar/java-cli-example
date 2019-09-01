@@ -3,67 +3,67 @@ apply plugin: 'jacoco'
 def jacocoDestFile = "$buildDir.path/jacoco/offline-instrument.exec"
 
 jacoco {
-  toolVersion = '0.8.4'
+    toolVersion = '0.8.4'
 }
 
 configurations {
-  jacocoAnt
-  jacocoAgent
+    jacocoAnt
+    jacocoAgent
 }
 
 task instrument(dependsOn: ['classes']) {
-  ext.outputDir = "$buildDir.path/classes-instrumented"
-  doLast {
-    ant.taskdef(
-      name: 'instrument',
-      classname: 'org.jacoco.ant.InstrumentTask',
-      classpath: configurations.jacocoAnt.asPath)
-    ant.instrument(destdir: outputDir) {
-      // Deprecated!
-      //fileset(dir: sourceSets.main.output.classesDir)
-      fileset(dir: sourceSets.main.java.outputDir)
+    ext.outputDir = "$buildDir.path/classes-instrumented"
+    doLast {
+        ant.taskdef(
+            name: 'instrument',
+            classname: 'org.jacoco.ant.InstrumentTask',
+            classpath: configurations.jacocoAnt.asPath)
+        ant.instrument(destdir: outputDir) {
+            // Deprecated!
+            //fileset(dir: sourceSets.main.output.classesDir)
+            fileset(dir: sourceSets.main.java.outputDir)
+        }
     }
-  }
 }
 
 gradle.taskGraph.whenReady { graph ->
-  if (graph.hasTask(instrument)) {
-    tasks.withType(Test) {
-      doFirst {
-        test {
-          jacoco {
-            destinationFile = file(jacocoDestFile)
-          }
+    if (graph.hasTask(instrument)) {
+        tasks.withType(Test) {
+            doFirst {
+                test {
+                    jacoco {
+                        destinationFile = file(jacocoDestFile)
+                    }
+                }
+                // No effect!
+                //systemProperty 'jacoco-agent.destfile', jacocoDestFile
+                classpath = files(instrument.outputDir) + classpath + configurations.jacocoAgent
+            }
         }
-        // No effect!
-        //systemProperty 'jacoco-agent.destfile', jacocoDestFile
-        classpath = files(instrument.outputDir) + classpath + configurations.jacocoAgent
-      }
     }
-  }
 }
 
 task report(dependsOn: ['instrument', 'test']) {
-  doLast {
-    ant.taskdef(
-      name: 'report',
-      classname: 'org.jacoco.ant.ReportTask',
-      classpath: configurations.jacocoAnt.asPath)
-    ant.report() {
-      executiondata {
-        ant.file(file: jacocoDestFile)
-      }
-      structure(name: 'Example') {
-        classfiles {
-          // Deprecated!
-          //fileset(dir: sourceSets.main.output.classesDir)
-          fileset(dir: sourceSets.main.java.outputDir)
+    doLast {
+        ant.taskdef(
+            name: 'report',
+            classname: 'org.jacoco.ant.ReportTask',
+            classpath: configurations.jacocoAnt.asPath)
+        ant.report() {
+            executiondata {
+                ant.file(file: jacocoDestFile)
+            }
+            structure(name: 'Target') {
+                classfiles {
+                    // Deprecated!
+                    //fileset(dir: sourceSets.main.output.classesDir)
+                    fileset(dir: sourceSets.main.java.outputDir)
+                }
+                sourcefiles {
+                    fileset(dir: 'src/main/java')
+                }
+            }
+            html(destdir: "$buildDir.path/reports/jacoco/test/html")
         }
-        sourcefiles {
-          fileset(dir: 'src/main/java')
-        }
-      }
-      html(destdir: "$buildDir.path/reports/jacoco/test/html")
     }
-  }
 }

@@ -71,8 +71,10 @@ jacocoTestReport {
     }
 }
 
+// for Jacoco with PowerMock
 apply from: 'gradle/jacoco-offline-instrument.gradle'
 
+project.tasks['sonarqube'].dependsOn 'report'
 sonarqube {
     properties {
         property 'sonar.projectKey', 'wdstar_java-cli-example'

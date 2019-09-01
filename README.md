@@ -13,11 +13,11 @@ Java CLI example
     ```
 1. Test.
     ```bash
-    $ gradlew test
+    $ ./gradlew test
     ```
 1. Build JAR.
     ```bash
-    $ gradlew jar
+    $ ./gradlew jar
     ```
 1. Run.
     ```bash
@@ -25,10 +25,13 @@ Java CLI example
     # with logback conf.
     $ java -Dlogback.configurationFile=./logback.groovy -jar ./build/libs/java-cli-example-*.jar
     ```
+1. Generate reports.
+    ```bash
+    $ ./gradlew report
 1. Analyze by SonarScanner
     ```bash
     # set access token
     $ cat ~/.gradle/gradle.properties 
     systemProp.sonar.login=<token>
-    $ gradlew sonarqube
+    $ ./gradlew sonarqube
     ```
