@@ -12,7 +12,8 @@ jobs:
       - run:
           name: Run unit tests
           command: |
-            ./gradlew test
+            #./gradlew test
+            ./gradlew report
       - run:
           name: Sonar Scanner
           command: |

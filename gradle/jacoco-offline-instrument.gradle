@@ -1,5 +1,7 @@
 apply plugin: 'jacoco'
 
+def jacocoDestFile = "$buildDir.path/jacoco/offline-instrument.exec"
+
 jacoco {
   toolVersion = '0.8.4'
 }
@@ -17,8 +19,9 @@ task instrument(dependsOn: ['classes']) {
       classname: 'org.jacoco.ant.InstrumentTask',
       classpath: configurations.jacocoAnt.asPath)
     ant.instrument(destdir: outputDir) {
+      // Deprecated!
       //fileset(dir: sourceSets.main.output.classesDir)
-      fileset(dir: "$buildDir.path/classes")
+      fileset(dir: sourceSets.main.java.outputDir)
     }
   }
 }
@@ -29,10 +32,11 @@ gradle.taskGraph.whenReady { graph ->
       doFirst {
         test {
           jacoco {
-            destinationFile = file("$buildDir.path/jacoco/offline-instrument.exec")
+            destinationFile = file(jacocoDestFile)
           }
         }
-        //systemProperty 'jacoco-agent.destfile', buildDir.path + '/jacoco/offline-instrument.exec'
+        // No effect!
+        //systemProperty 'jacoco-agent.destfile', jacocoDestFile
         classpath = files(instrument.outputDir) + classpath + configurations.jacocoAgent
       }
     }
@@ -47,12 +51,13 @@ task report(dependsOn: ['instrument', 'test']) {
       classpath: configurations.jacocoAnt.asPath)
     ant.report() {
       executiondata {
-        ant.file(file: "$buildDir.path/jacoco/offline-instrument.exec")
+        ant.file(file: jacocoDestFile)
       }
       structure(name: 'Example') {
         classfiles {
+          // Deprecated!
           //fileset(dir: sourceSets.main.output.classesDir)
-          fileset(dir: "$buildDir.path/classes")
+          fileset(dir: sourceSets.main.java.outputDir)
         }
         sourcefiles {
           fileset(dir: 'src/main/java')

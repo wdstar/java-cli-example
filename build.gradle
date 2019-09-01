@@ -71,12 +71,13 @@ jacocoTestReport {
     }
 }
 
+apply from: 'gradle/jacoco-offline-instrument.gradle'
+
 sonarqube {
     properties {
         property 'sonar.projectKey', 'wdstar_java-cli-example'
         property 'sonar.organization', 'wdstar'
         property 'sonar.host.url', 'https://sonarcloud.io'
+        property 'sonar.jacoco.reportPath', "$buildDir.path/jacoco/offline-instrument.exec"
     }
 }
-
-apply from: 'gradle/jacoco-offline-instrument.gradle'
