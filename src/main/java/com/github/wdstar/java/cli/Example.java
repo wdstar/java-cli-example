@@ -11,18 +11,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Example {
-    private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public String getGreeting() {
-        return format("Hello world. Java: %s", SystemUtils.JAVA_VERSION);
-    }
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static void main(String[] args) {
-        logger.info("Greeting: {}", new Example().getGreeting());
+	public String getGreeting() {
+		return format("Hello world. Java: %s", SystemUtils.JAVA_VERSION);
+	}
 
-        logger.debug("debug message.");
-        logger.info("info message");
-        logger.warn("warn message");
-        logger.error("error message");
-    }
+	public static void main(String[] args) {
+		logger.info("Greeting: {}", new Example().getGreeting());
+
+		logger.debug("debug message.");
+		logger.info("info message");
+		logger.warn("warn message");
+		logger.error("error message");
+	}
+
 }

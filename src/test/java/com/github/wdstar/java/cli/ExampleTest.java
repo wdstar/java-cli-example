@@ -14,23 +14,25 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Example.class})
+@PrepareForTest({ Example.class })
 public class ExampleTest {
-    @Test
-    public void testExampleHasAGreeting() {
-        Example example = new Example();
-        String greeting = example.getGreeting();
 
-        // by JUnit (traditional)
-        assertNotNull(greeting);
-        assertThat(greeting, notNullValue());
-        // by AssertJ
-        assertThat(greeting).isNotNull();
-        assertThat(greeting).startsWith("Hello world. Java: ");
-    }
+	@Test
+	public void testExampleHasAGreeting() {
+		Example example = new Example();
+		String greeting = example.getGreeting();
 
-    @Test
-    public void testMain() {
-        Example.main(new String[]{});
-    }
+		// by JUnit (traditional)
+		assertNotNull(greeting);
+		assertThat(greeting, notNullValue());
+		// by AssertJ
+		assertThat(greeting).isNotNull();
+		assertThat(greeting).startsWith("Hello world. Java: ");
+	}
+
+	@Test
+	public void testMain() {
+		Example.main(new String[] {});
+	}
+
 }

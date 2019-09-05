@@ -6,6 +6,15 @@
  * User Manual available at https://docs.gradle.org/5.5.1/userguide/tutorial_java_projects.html
  */
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.15")
+    }
+}
+
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
@@ -15,6 +24,8 @@ plugins {
     id 'org.sonarqube' version '2.7.1'
     id 'jacoco'
 }
+
+apply plugin: 'io.spring.javaformat'
 
 repositories {
     // Use jcenter for resolving dependencies.
