@@ -4,8 +4,8 @@
 package com.github.wdstar.java.cli;
 
 import static java.lang.String.format;
-import java.lang.invoke.MethodHandles;
 
+import java.lang.invoke.MethodHandles;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
