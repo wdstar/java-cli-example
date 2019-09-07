@@ -6,6 +6,10 @@ package com.github.wdstar.java.cli;
 import static java.lang.String.format;
 
 import java.lang.invoke.MethodHandles;
+
+import com.github.wdstar.animals.Animal;
+import com.github.wdstar.animals.Cat;
+
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +29,9 @@ public class Example {
 		logger.info("info message");
 		logger.warn("warn message");
 		logger.error("error message");
+
+		Animal cat = new Cat();
+		System.out.println(cat.cry());
 	}
 
 }

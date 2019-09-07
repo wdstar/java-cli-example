@@ -38,6 +38,8 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.7'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 
@@ -64,6 +66,12 @@ dependencies {
 application {
     // Define the main class for the application
     mainClassName = 'com.github.wdstar.java.cli.Example'
+}
+
+test {
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
 }
 
 jar {

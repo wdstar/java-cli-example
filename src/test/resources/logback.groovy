@@ -18,6 +18,7 @@ appender("CONSOLE", ConsoleAppender) {
   }
 }
 
+/*
 appender("FILE", RollingFileAppender) {
   fileName = defaultFilename
 
@@ -31,6 +32,7 @@ appender("FILE", RollingFileAppender) {
     fileNamePattern = "${defaultFilename}.%d{yyyy-MM-dd}.gz"
   }
 }
+*/
 
 // default level: DEBUG
-root INFO, ["CONSOLE", "FILE"]
+root INFO, ["CONSOLE"]
