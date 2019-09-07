@@ -10,6 +10,7 @@ import java.lang.invoke.MethodHandles;
 import com.github.wdstar.animals.Animal;
 import com.github.wdstar.animals.Cat;
 import com.github.wdstar.animals.Thing;
+import com.github.wdstar.lombok.Person;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
@@ -36,6 +37,11 @@ public class Example {
 		logger.info(cat.cry());
 		Animal thing = new Thing();
 		logger.info(thing.cry());
+
+		Person alice = new Person();
+		alice.setName("alice");
+		alice.setAge(7);
+		logger.info(alice.toString());
 	}
 
 }
