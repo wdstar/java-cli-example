@@ -9,6 +9,7 @@ import java.lang.invoke.MethodHandles;
 
 import com.github.wdstar.animals.Animal;
 import com.github.wdstar.animals.Cat;
+import com.github.wdstar.animals.Thing;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
@@ -30,8 +31,11 @@ public class Example {
 		logger.warn("warn message");
 		logger.error("error message");
 
+		logger.info(Animal.getInfo());
 		Animal cat = new Cat();
-		System.out.println(cat.cry());
+		logger.info(cat.cry());
+		Animal thing = new Thing();
+		logger.info(thing.cry());
 	}
 
 }

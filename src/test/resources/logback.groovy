@@ -19,6 +19,7 @@ appender("CONSOLE", ConsoleAppender) {
 }
 
 /*
+// Note: log file is created by just appender definition.
 appender("FILE", RollingFileAppender) {
   fileName = defaultFilename
 
