@@ -33,15 +33,19 @@ public class Example {
 		logger.error("error message");
 
 		logger.info(Animal.getInfo());
+		String cry;
 		Animal cat = new Cat();
-		logger.info(cat.cry());
+		cry = cat.cry();
+		logger.info(cry);
 		Animal thing = new Thing();
-		logger.info(thing.cry());
+		cry = thing.cry();
+		logger.info(cry);
 
 		Person alice = new Person();
 		alice.setName("alice");
 		alice.setAge(7);
-		logger.info(alice.toString());
+		String toStr = alice.toString();
+		logger.info(toStr);
 	}
 
 }
