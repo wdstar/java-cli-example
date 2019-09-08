@@ -19,20 +19,24 @@ public class VertebrateTest {
 	@Test
 	public void testVertebrate() {
 		assertThat(Vertebrate.MAMMAL.toString()).isEqualTo("MAMMAL");
-		assertThat(Vertebrate.MAMMAL.getName()).isEqualTo("mammal");
+		assertThat(Vertebrate.MAMMAL.getKey()).isEqualTo("mammal");
 		assertThat(Vertebrate.valueOf("MAMMAL")).isEqualTo(Vertebrate.MAMMAL);
+		assertThat(Vertebrate.valueByKey("mammal")).isEqualTo(Vertebrate.MAMMAL);
+		assertThatThrownBy(() -> {
+			Vertebrate.valueByKey("invalidKey");
+		}).isInstanceOf(IllegalArgumentException.class);
 
 		for (Vertebrate vertebrate : Vertebrate.values()) {
 			String toStr = vertebrate.toString();
-			String name = vertebrate.getName();
+			String key = vertebrate.getKey();
 			logger.info(toStr);
-			logger.info(name);
+			logger.info(key);
 		}
 		Arrays.stream(Vertebrate.values()).forEach(vertebrate -> {
 			String toStr = vertebrate.toString();
-			String name = vertebrate.getName();
+			String key = vertebrate.getKey();
 			logger.info(toStr);
-			logger.info(name);
+			logger.info(key);
 		});
 	}
 

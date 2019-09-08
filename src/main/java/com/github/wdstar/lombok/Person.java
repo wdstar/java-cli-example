@@ -1,21 +1,23 @@
 package com.github.wdstar.lombok;
 
-import lombok.Data;
+//import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
+import lombok.ToString;
 
 /**
  * Person
  */
-@Data
+// @Data
+@ToString
 public class Person {
 
 	@Getter
 	@Setter
 	private String name;
 
-	@Accessors
+	@Getter
+	@Setter
 	private int age;
 
 }
