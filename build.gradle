@@ -22,6 +22,7 @@ plugins {
     id 'application'
     id 'jacoco'
     //id 'com.github.sherter.google-java-format' version '0.8'
+    id 'org.ajoberstar.grgit' version '3.1.1'
     id 'org.sonarqube' version '2.7.1'
     id 'io.freefair.lombok' version '4.0.1'
 }
@@ -64,6 +65,24 @@ dependencies {
     testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.2'
 }
 
+group 'com.github.wdstar'
+version = {
+    def tags = grgit.tag.list().collect { it.getName() }
+    def versionStr
+    if (tags.any { it ==~ /v\d.*/ }) {
+        versionStr = grgit.describe(longDescr: false, tags: true, match: ['v[0-9]*'])
+    } else {
+        versionStr = grgit.head().abbreviatedId
+    }
+    return versionStr.replaceFirst(/^v/, '') + (grgit.status().isClean() ? '' : '+dirty')
+}()
+
+task showVersion {
+    doLast {
+        println version
+    }
+}
+
 application {
     // Define the main class for the application
     mainClassName = 'com.github.wdstar.java.cli.Example'
@@ -81,7 +100,7 @@ jar {
         attributes 'Main-Class': 'com.github.wdstar.java.cli.Example'
     }
     
-    version '0.1.0'
+    version version
     // fat jar
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     from configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
