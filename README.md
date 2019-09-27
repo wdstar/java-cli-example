@@ -17,7 +17,10 @@ Java CLI example
     ```
 1. Build JAR.
     ```bash
-    $ ./gradlew jar
+    # Better
+    $ ./gradlew bootJar
+    # This fat jar generation has a problem.
+    #$ ./gradlew jar
     ```
 1. Run.
     ```bash

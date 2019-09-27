@@ -24,6 +24,8 @@ plugins {
     //id 'com.github.sherter.google-java-format' version '0.8'
     id 'org.ajoberstar.grgit' version '3.1.1'
     id 'org.sonarqube' version '2.7.1'
+    // https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
     id 'io.freefair.lombok' version '4.0.1'
 }
 
@@ -97,13 +99,25 @@ test {
 jar {
     manifest {
         attributes 'Manifest-Version': '0.1.0'
+        attributes 'Implementation-Title': 'cli-example'
+        attributes 'Implementation-Version': version
         attributes 'Main-Class': 'com.github.wdstar.java.cli.Example'
     }
     
     version version
-    // fat jar
+    // Note: this fat jar has a problem.
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     from configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+bootJar {
+    manifest {
+        attributes 'Manifest-Version': '0.1.0'
+        attributes 'Implementation-Title': 'cli-example'
+        attributes 'Implementation-Version': version
+    }
+    
+    mainClassName = 'com.github.wdstar.java.cli.Example'
 }
 
 jacocoTestReport {
