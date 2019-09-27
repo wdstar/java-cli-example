@@ -22,6 +22,7 @@ plugins {
     id 'application'
     id 'jacoco'
     //id 'com.github.sherter.google-java-format' version '0.8'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
     id 'org.ajoberstar.grgit' version '3.1.1'
     id 'org.sonarqube' version '2.7.1'
     // https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
@@ -110,6 +111,7 @@ jar {
     from configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
+// nested jar generation task
 bootJar {
     manifest {
         attributes 'Manifest-Version': '0.1.0'
@@ -118,6 +120,13 @@ bootJar {
     }
     
     mainClassName = 'com.github.wdstar.java.cli.Example'
+}
+
+// uber jar generation task
+shadowJar {
+    manifest {
+        inheritFrom project.tasks.jar.manifest
+    }
 }
 
 jacocoTestReport {

@@ -17,8 +17,10 @@ Java CLI example
     ```
 1. Build JAR.
     ```bash
-    # Better
+    # Recommended: nested jar generation
     $ ./gradlew bootJar
+    # Recommended alternative: uber jar generation
+    $ ./gradlew shadowJar
     # This fat jar generation has a problem.
     #$ ./gradlew jar
     ```
