@@ -111,9 +111,9 @@ jar {
     enabled = true
     manifest {
         attributes 'Manifest-Version': '0.1.0'
-        attributes 'Implementation-Title': 'cli-example'
+        attributes 'Implementation-Title': rootProject.name
         attributes 'Implementation-Version': version
-        attributes 'Main-Class': 'com.github.wdstar.java.cli.Example'
+        attributes 'Main-Class': application.mainClassName
     }
     
     version version
@@ -126,11 +126,11 @@ jar {
 bootJar {
     manifest {
         attributes 'Manifest-Version': '0.1.0'
-        attributes 'Implementation-Title': 'cli-example'
+        attributes 'Implementation-Title': rootProject.name
         attributes 'Implementation-Version': version
     }
     
-    mainClassName = 'com.github.wdstar.java.cli.Example'
+    mainClassName = application.mainClassName
 }
 
 // uber jar generation task
