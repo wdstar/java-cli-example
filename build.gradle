@@ -97,7 +97,18 @@ test {
     }
 }
 
+def jarExcludes = [
+    'META-INF/INDEX.LIST',
+    'META-INF/*.SF',
+    'META-INF/*.DSA',
+    'META-INF/*.RSA'
+]
+
 jar {
+    // By default, when the bootJar or bootWar tasks are configured, the jar or war tasks are disabled.
+    // A project can be configured to build both an executable archive and a normal archive at the same time
+    // by enabling the jar or war task:
+    enabled = true
     manifest {
         attributes 'Manifest-Version': '0.1.0'
         attributes 'Implementation-Title': 'cli-example'
@@ -106,9 +117,9 @@ jar {
     }
     
     version version
-    // Note: this fat jar has a problem.
-    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    from configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
+    // Note: this fat jar excludes any JAR index or cryptographic signature files like the Shadow plugin.
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it).matching { exclude jarExcludes } }
+    from configurations.runtime.collect { it.isDirectory() ? it : zipTree(it).matching { exclude jarExcludes } }
 }
 
 // nested jar generation task

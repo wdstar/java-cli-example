@@ -15,14 +15,14 @@ Java CLI example
     ```bash
     $ ./gradlew test
     ```
-1. Build JAR.
+1. Build executable JAR.
     ```bash
-    # Recommended: nested jar generation
+    # Recommended (SpringBoot plugin): nested jar generation
     $ ./gradlew bootJar
-    # Recommended alternative: uber jar generation
+    # Recommended alternative (Shadow plugin): uber jar generation
     $ ./gradlew shadowJar
-    # This fat jar generation has a problem.
-    #$ ./gradlew jar
+    # Not recommended (default jar task)
+    $ ./gradlew jar
     ```
 1. Run.
     ```bash
