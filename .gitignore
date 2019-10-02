@@ -4,6 +4,8 @@
 # Ignore Gradle build output directory
 bin
 build
+# This is managed by Lombok Gradle plugin.
+lombok.config
 
 .vscode/
 .settings/
