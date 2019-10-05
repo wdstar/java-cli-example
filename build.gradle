@@ -96,7 +96,10 @@ application {
 checkerFramework {
     excludeTests = true
     checkers = [
+        'org.checkerframework.checker.formatter.FormatterChecker',
         'org.checkerframework.checker.nullness.NullnessChecker',
+        'org.checkerframework.checker.regex.RegexChecker',
+        'org.checkerframework.checker.signature.SignatureChecker',
     ]
 }
 
