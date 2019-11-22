@@ -6,6 +6,7 @@ package com.github.wdstar.java.cli;
 import static java.lang.String.format;
 
 import java.lang.invoke.MethodHandles;
+import java.nio.charset.StandardCharsets;
 
 import com.github.wdstar.animals.Animal;
 import com.github.wdstar.animals.Cat;
@@ -17,17 +18,20 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.layout.TTLLLayout;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.ConsoleAppender;
+import ch.qos.logback.core.encoder.LayoutWrappingEncoder;
+
 @Slf4j
 public class Example {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	public String getGreeting() {
-		return format("Hello world. Java: %s", SystemUtils.JAVA_VERSION);
-	}
-
 	public static void main(String[] args) {
-		logger.info("Greeting: {}", new Example().getGreeting());
+		Example example = new Example();
+		logger.info("Greeting: {}", example.getGreeting());
 
 		logger.debug("debug message.");
 		logger.info("info message");
@@ -54,6 +58,40 @@ public class Example {
 		alice.setAge(7);
 		String toStr = alice.toString();
 		logger.info(toStr);
+
+		example.addOnlyStdErrConsoleAppender();
+		logger.info("This message is output to stderr.");
+		log.info("This message is output to stderr.");
+	}
+
+	public String getGreeting() {
+		return format("Hello world. Java: %s", SystemUtils.JAVA_VERSION);
+	}
+
+	protected void addOnlyStdErrConsoleAppender() {
+		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+		ch.qos.logback.classic.Logger rootLogger = lc.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME);
+		rootLogger.detachAndStopAllAppenders();
+
+		ConsoleAppender<ILoggingEvent> ca = new ConsoleAppender<>();
+		ca.setContext(lc);
+		ca.setName("console");
+		ca.setTarget("System.err");
+
+		// same as "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+		TTLLLayout layout = new TTLLLayout();
+		layout.setContext(lc);
+		layout.start();
+
+		LayoutWrappingEncoder<ILoggingEvent> encoder = new LayoutWrappingEncoder<>();
+		encoder.setContext(lc);
+		encoder.setLayout(layout);
+		encoder.setCharset(StandardCharsets.UTF_8);
+
+		ca.setEncoder(encoder);
+		ca.start();
+
+		rootLogger.addAppender(ca);
 	}
 
 }
