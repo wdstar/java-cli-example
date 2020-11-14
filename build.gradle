@@ -23,6 +23,8 @@ plugins {
 
 apply plugin: 'io.spring.javaformat'
 
+sourceCompatibility = 11
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -30,14 +32,14 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.slf4j:slf4j-api:1.7.26'
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'org.apache.commons:commons-csv:1.7'
-    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.slf4j:slf4j-api:1.7.+'
+    implementation 'ch.qos.logback:logback-classic:1.2.+'
+    implementation 'org.apache.commons:commons-csv:1.8'
+    implementation 'org.apache.commons:commons-lang3:3.11'
     // This dependency is used by the application.
-    implementation 'com.google.guava:guava:27.1-jre'
+    implementation 'com.google.guava:guava:30.0-jre'
 
-    runtime 'org.codehaus.groovy:groovy:2.5.7'
+    runtime 'org.codehaus.groovy:groovy:3.0.+'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.hamcrest:hamcrest-all:1.3'
