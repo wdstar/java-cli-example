@@ -1,7 +1,7 @@
 package com.github.wdstar.lombok;
 
 import lombok.AllArgsConstructor;
-// import lombok.Data;
+// @Data = @Getter + @Setter + @ToString + @EqualsAndHashCode + @RequiredArgsConstructor
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

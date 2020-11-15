@@ -70,7 +70,8 @@ public class Example {
 
 	protected void addOnlyStdErrConsoleAppender() {
 		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-		ch.qos.logback.classic.Logger rootLogger = lc.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME);
+		// Note: ch.qos.logback.classic.Logger implements org.slf4j.Logger
+		ch.qos.logback.classic.Logger rootLogger = lc.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
 		rootLogger.detachAndStopAllAppenders();
 
 		ConsoleAppender<ILoggingEvent> ca = new ConsoleAppender<>();
