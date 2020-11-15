@@ -5,6 +5,11 @@
 
 Java CLI example
 
+
+## Requirements
+
+- Java 11+
+
 ## Development
 
 1. Initialize a project.

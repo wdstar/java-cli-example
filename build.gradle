@@ -23,7 +23,9 @@ plugins {
 
 apply plugin: 'io.spring.javaformat'
 
-sourceCompatibility = 11
+group 'com.github.wdstar'
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -49,7 +51,6 @@ dependencies {
     testImplementation 'org.powermock:powermock-api-mockito2:2.0.+'
 }
 
-group 'com.github.wdstar'
 version = {
     def tags = grgit.tag.list().collect { it.getName() }
     def versionStr
