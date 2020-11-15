@@ -4,6 +4,7 @@
 package com.github.wdstar.java.cli;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -32,7 +33,7 @@ class ExampleTest {
 
 	@Test
 	void testMain() {
-		Example.main(new String[] {});
+		assertThatCode(() -> Example.main(new String[] {})).doesNotThrowAnyException();
 	}
 
 }
