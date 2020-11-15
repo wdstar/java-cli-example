@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 /**
  * PersonTest
  */
-public class PersonTest {
+class PersonTest {
 
 	@Test
-	public void testAccessor() {
+	void testAccessor() {
 		Person alice = new Person();
 		alice.setName("alice");
 		alice.setAge(7);

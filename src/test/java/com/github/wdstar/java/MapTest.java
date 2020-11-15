@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 /**
  * MapTest
  */
-public class MapTest {
+class MapTest {
 
 	@Test
-	public void testSortedKeyMap() {
+	void testSortedKeyMap() {
 		Map<String, String> actualMap = new HashMap<String, String>();
 
 		// put randomly

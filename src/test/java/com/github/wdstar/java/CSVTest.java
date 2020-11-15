@@ -18,10 +18,10 @@ import org.junit.jupiter.api.Test;
 /**
  * CSVTest
  */
-public class CSVTest {
+class CSVTest {
 
 	@Test
-	public void testCSV() throws IOException {
+	void testCSV() throws IOException {
 		Path csvFile = Paths.get("./testdata/test.csv");
 		try (BufferedReader br = Files.newBufferedReader(csvFile); CSVParser parser = CSVFormat.DEFAULT.parse(br);) {
 			assertThat(parser.getCurrentLineNumber()).isEqualTo(0);

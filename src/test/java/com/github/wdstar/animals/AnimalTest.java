@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 /**
  * AnimalTest
  */
-public class AnimalTest {
+class AnimalTest {
 
 	@Test
-	public void testCry() {
+	void testCry() {
 		Animal thing = new Thing();
 		assertThat(thing.cry()).isEqualTo("...");
 		assertThat(thing.cryAndSleep()).isEqualTo("..., zzz");

@@ -13,12 +13,12 @@ import org.slf4j.LoggerFactory;
 /**
  * VertebrateTest
  */
-public class VertebrateTest {
+class VertebrateTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Test
-	public void testVertebrate() {
+	void testVertebrate() {
 		assertThat(Vertebrate.MAMMAL.toString()).isEqualTo("MAMMAL");
 		assertThat(Vertebrate.MAMMAL.getKey()).isEqualTo("mammal");
 		assertThat(Vertebrate.valueOf("MAMMAL")).isEqualTo(Vertebrate.MAMMAL);
