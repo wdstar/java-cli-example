@@ -14,9 +14,9 @@ class PersonTest {
 		Person alice = new Person();
 		alice.setName("alice");
 		alice.setAge(7);
-		assertThat(alice.getName()).isEqualTo("alice");
+		assertThat(alice.getName()).hasToString("alice");
 		assertThat(alice.getAge()).isEqualTo(7);
-		assertThat(alice.toString()).isEqualTo("Person(name=alice, age=7)");
+		assertThat(alice.toString()).hasToString("Person(name=alice, age=7)");
 	}
 
 }

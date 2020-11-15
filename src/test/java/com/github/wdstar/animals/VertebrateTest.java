@@ -19,8 +19,8 @@ class VertebrateTest {
 
 	@Test
 	void testVertebrate() {
-		assertThat(Vertebrate.MAMMAL.toString()).isEqualTo("MAMMAL");
-		assertThat(Vertebrate.MAMMAL.getKey()).isEqualTo("mammal");
+		assertThat(Vertebrate.MAMMAL.toString()).hasToString("MAMMAL");
+		assertThat(Vertebrate.MAMMAL.getKey()).hasToString("mammal");
 		assertThat(Vertebrate.valueOf("MAMMAL")).isEqualTo(Vertebrate.MAMMAL);
 		assertThat(Vertebrate.valueByKey("mammal")).isEqualTo(Vertebrate.MAMMAL);
 		assertThatThrownBy(() -> {

@@ -12,12 +12,12 @@ class AnimalTest {
 	@Test
 	void testCry() {
 		Animal thing = new Thing();
-		assertThat(thing.cry()).isEqualTo("...");
-		assertThat(thing.cryAndSleep()).isEqualTo("..., zzz");
+		assertThat(thing.cry()).hasToString("...");
+		assertThat(thing.cryAndSleep()).hasToString("..., zzz");
 
 		Animal cat = new Cat();
-		assertThat(cat.cry()).isEqualTo("mew");
-		assertThat(cat.cryAndSleep()).isEqualTo("mew, zzz");
+		assertThat(cat.cry()).hasToString("mew");
+		assertThat(cat.cryAndSleep()).hasToString("mew, zzz");
 	}
 
 }

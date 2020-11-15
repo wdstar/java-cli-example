@@ -24,7 +24,7 @@ class CSVTest {
 	void testCSV() throws IOException {
 		Path csvFile = Paths.get("./testdata/test.csv");
 		try (BufferedReader br = Files.newBufferedReader(csvFile); CSVParser parser = CSVFormat.DEFAULT.parse(br);) {
-			assertThat(parser.getCurrentLineNumber()).isEqualTo(0);
+			assertThat(parser.getCurrentLineNumber()).isZero();
 			// Note: CSVParser's method call changes the parser's state.
 			List<CSVRecord> records = parser.getRecords();
 			assertThat(parser.getCurrentLineNumber()).isEqualTo(1);

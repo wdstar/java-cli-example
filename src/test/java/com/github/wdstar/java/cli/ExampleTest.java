@@ -16,10 +16,10 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ Example.class })
-public class ExampleTest {
+class ExampleTest {
 
 	@Test
-	public void testExampleHasAGreeting() {
+	void testExampleHasAGreeting() {
 		Example example = new Example();
 		String greeting = example.getGreeting();
 
@@ -27,12 +27,11 @@ public class ExampleTest {
 		assertNotNull(greeting);
 		assertThat(greeting, notNullValue());
 		// by AssertJ
-		assertThat(greeting).isNotNull();
-		assertThat(greeting).startsWith("Hello world. Java: ");
+		assertThat(greeting).isNotNull().startsWith("Hello world. Java: ");
 	}
 
 	@Test
-	public void testMain() {
+	void testMain() {
 		Example.main(new String[] {});
 	}
 
